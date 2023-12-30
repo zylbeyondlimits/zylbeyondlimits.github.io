@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>杜文亮深度实践笔记 - chap13 - 对TCP的攻击 - Zylll&#039;s blog — 你眼睛里的东西是你脑海里的回忆。</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="Zylll&#039;s blog — 你眼睛里的东西是你脑海里的回忆。"><meta name="msapplication-TileImage" content="https://s1.imagehub.cc/images/2023/10/19/Photographer.jpeg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Zylll&#039;s blog — 你眼睛里的东西是你脑海里的回忆。"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="《计算机安全导论——深度实践》中第十三章的学习笔记。介绍了计算机安全中与 TCP 有关的攻击的知识，持续更新中。"><meta property="og:type" content="blog"><meta property="og:title" content="杜文亮深度实践笔记 - chap13 - 对TCP的攻击"><meta property="og:url" content="http://example.com/2023/12/18/%E6%9D%9C%E6%96%87%E4%BA%AE%E6%B7%B1%E5%BA%A6%E5%AE%9E%E8%B7%B5%E7%AC%94%E8%AE%B0-chap13-%E5%AF%B9TCP%E7%9A%84%E6%94%BB%E5%87%BB/"><meta property="og:site_name" content="Zylll&#039;s blog — 你眼睛里的东西是你脑海里的回忆。"><meta property="og:description" content="《计算机安全导论——深度实践》中第十三章的学习笔记。介绍了计算机安全中与 TCP 有关的攻击的知识，持续更新中。"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="https://s1.imagehub.cc/images/2023/12/18/6c91132e47be927abd61bcdbeb741bc1.png"><meta property="og:image" content="https://s1.imagehub.cc/images/2023/12/18/e6e531b2fa9c74625764b77985c88817.png"><meta property="article:published_time" content="2023-12-18T07:43:10.000Z"><meta property="article:modified_time" content="2023-12-30T07:34:11.365Z"><meta property="article:author" content="Zylll"><meta property="article:tag" content="网络安全"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="https://s1.imagehub.cc/images/2023/12/18/6c91132e47be927abd61bcdbeb741bc1.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://example.com/2023/12/18/%E6%9D%9C%E6%96%87%E4%BA%AE%E6%B7%B1%E5%BA%A6%E5%AE%9E%E8%B7%B5%E7%AC%94%E8%AE%B0-chap13-%E5%AF%B9TCP%E7%9A%84%E6%94%BB%E5%87%BB/"},"headline":"杜文亮深度实践笔记 - chap13 - 对TCP的攻击","image":["https://s1.imagehub.cc/images/2023/12/18/6c91132e47be927abd61bcdbeb741bc1.png","https://s1.imagehub.cc/images/2023/12/18/e6e531b2fa9c74625764b77985c88817.png"],"datePublished":"2023-12-18T07:43:10.000Z","dateModified":"2023-12-30T07:34:11.365Z","author":{"@type":"Person","name":"Zylll"},"publisher":{"@type":"Organization","name":"Zylll's blog — 你眼睛里的东西是你脑海里的回忆。","logo":{"@type":"ImageObject","url":{"text":"Zylll's Blog"}}},"description":"《计算机安全导论——深度实践》中第十三章的学习笔记。介绍了计算机安全中与 TCP 有关的攻击的知识，持续更新中。"}</script><link rel="canonical" href="http://example.com/2023/12/18/%E6%9D%9C%E6%96%87%E4%BA%AE%E6%B7%B1%E5%BA%A6%E5%AE%9E%E8%B7%B5%E7%AC%94%E8%AE%B0-chap13-%E5%AF%B9TCP%E7%9A%84%E6%94%BB%E5%87%BB/"><link rel="icon" href="https://s1.imagehub.cc/images/2023/10/19/Photographer.jpeg"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css"><!--!--><!--!--><!--!--><!--!--><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><!--!--><!--!--><!-- hexo injector head_end start --><script>
+  (function () {
+      function switchTab() {
+          if (!location.hash) {
+            return;
+          }
+
+          const id = '#' + CSS.escape(location.hash.substring(1));
+          const $tabMenu = document.querySelector(`.tabs a[href="${id}"]`);
+          if (!$tabMenu) {
+            return;
+          }
+
+          const $tabMenuContainer = $tabMenu.parentElement.parentElement;
+          Array.from($tabMenuContainer.children).forEach($menu => $menu.classList.remove('is-active'));
+          Array.from($tabMenuContainer.querySelectorAll('a'))
+              .map($menu => document.getElementById($menu.getAttribute("href").substring(1)))
+              .forEach($content => $content.classList.add('is-hidden'));
+
+          if ($tabMenu) {
+              $tabMenu.parentElement.classList.add('is-active');
+          }
+          const $activeTab = document.querySelector(id);
+          if ($activeTab) {
+              $activeTab.classList.remove('is-hidden');
+          }
+      }
+      switchTab();
+      window.addEventListener('hashchange', switchTab, false);
+  })();
+  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"><style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style></head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/">Zylll&#039;s Blog</a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" target="_blank" rel="noopener" href="https://zylbeyondlimits.github.io/2023/10/19/About%20me/">About Me</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a><a class="navbar-item is-hidden-tablet catalogue" title="目录" href="javascript:;"><i class="fas fa-list-ul"></i></a><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-8-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2023-12-18T07:43:10.000Z" title="2023/12/18 15:43:10">2023-12-18</time>发表</span><span class="level-item"><time dateTime="2023-12-30T07:34:11.365Z" title="2023/12/30 15:34:11">2023-12-30</time>更新</span><span class="level-item"><a class="link-muted" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%AE%89%E5%85%A8/">计算机安全</a></span><span class="level-item">13 分钟读完 (大约1881个字)</span></div></div><h1 class="title is-3 is-size-4-mobile">杜文亮深度实践笔记 - chap13 - 对TCP的攻击</h1><div class="content"><h3><span id="131-introduction-to-tcp">13.1 Introduction to TCP</span></h3><h4><span id="1311-advantage-of-tcp">13.1.1 Advantage of TCP</span></h4><p>即使传输层中拥有了 UDP 协议，但还是有些功能需要更高级的协议来实现。</p>
+<h5><span id="1-providing-a-virtual-connection">1. Providing a Virtual Connection</span></h5><p>TCP 需要在通信的两端建立一条逻辑上的连接。可以把它想象为进行通信的应用程序之间的数据管道（pipe）。</p>
+<h5><span id="2-maintaining-order">2. Maintaining order</span></h5><p>由于 TCP 的传输机制，可以保证接收方接收到从发送方发送的有序的数据包，这个功能对于一些“阅读顺序不同则会导致意思不同”的情况非常重要。</p>
+<h5><span id="3-reliablity">3. Reliablity</span></h5><p>TCP 具有“发现数据包在传输过程中丢失”的功能，在发现有数据包在传输过程中丢失时，TCP 会尝试重传丢失的数据包，以保证通信的可靠性。</p>
+<h5><span id="4-flow-and-congestion-control">4. Flow and Congestion Control</span></h5><p>TCP 在内部还提供流量控制与拥塞控制。流量控制用来防止在数据传送过程中“发送方发送速度过快，接收方来不及接受从而导致数据包意外丢失”的情况，拥塞控制用来防止“过多的数据注入到网络，导致网络中的路由器或链路过载”的情况。</p>
+<h4><span id="1312-principles-when-tcp-working">13.1.2 Principles When TCP Working</span></h4><h5><span id="tcp-cilent">TCP Cilent</span></h5><p>Cilent 是建立连接的一端。TCP Client Program 展示了 Client 需要做的事情：</p>
+<p><a target="_blank" rel="noopener" href="https://www.imagehub.cc/image/1jS3sk"><img src="https://s1.imagehub.cc/images/2023/12/18/6c91132e47be927abd61bcdbeb741bc1.png" alt="6c91132e47be927abd61bcdbeb741bc1.png"></a></p>
+<ol>
+<li><p>建立一个 socket。<br> 当建立 socket 时，需要指明通信的类型。TCP 使用 <code>SOCK STREAM</code> 类型，而 UDP 使用 <code>SOCK DGRAM</code> 类型。</p>
+</li>
+<li><p>设定目的地信息。<br> 需要提供服务端的信息，以便系统知道将 TCP 数据发送到哪里。服务端信息包括 IP 地址和端口。在本例中，服务器程序运行在 <code>10.0.2.17</code> 的 <code>9090</code> 端口上。</p>
+</li>
+<li><p>连接服务端。<br> TCP 是一个面向连接的协议，这意味着在两端可以互相交换数据之前，需要先建立连接（TCP 的三次握手协议）。这不是一条从客户端到服务端的物理连接，而是一条客户端和服务端之间的逻辑连接。<br> 这个连接可以通过一个四元组来表示：源IP 地址、源端口号、目的IP地址和目的端口号。</p>
+</li>
+<li><p>发送和接收数据。<br> 一旦连接建立，两端便可通过系统调用发送和接收数据。<br> 发送数据可以使用 <code>write()</code>、<code>send()</code>、<code>sendto()</code> 和 <code>sendmsg()</code> 等系统调用。<br> 接收数据可以使用 <code>read()</code>、<code>recv()</code> 和 <code>recvfrom()</code> 等系统调用。</p>
+</li>
+<li><p>关闭连接。<br> 一旦通信结束，连接需要被关闭，这样它占用的系统资源将被释放。<br> 通过使用系统调用 <code>close()</code> ，程序将会发送一个特别的数据包告知对方连接将被关闭。</p>
+</li>
+</ol>
+<h5><span id="tcp-server">TCP Server</span></h5><p>Server 会监听 Client 建立的连接。TCP Server Program 展示了 Server 需要做的事情：</p>
+<p><a target="_blank" rel="noopener" href="https://www.imagehub.cc/image/1jSB17"><img src="https://s1.imagehub.cc/images/2023/12/18/e6e531b2fa9c74625764b77985c88817.png" alt="e6e531b2fa9c74625764b77985c88817.png"></a></p>
+<ol>
+<li><p>建立一个 socket。这个步骤与客户端相同。</p>
+</li>
+<li><p>绑定一个端口号。<br> 一个应用如果需要与其他应用通过网络连接，则需要在主机上注册一个端口号。这样当一个数据包到达时，基于数据包内指定的端口号，操作系统可以知道哪个应用是数据包的接收者。服务器需要告知操作系统它使用的端口号，这是通过系统调用 <code>bind()</code> 来完成的。<br> 在本例中，服务端程序使用 <code>9090</code> 端口。流行的服务器通常会绑定一些知名的特定端口号，以便客户端可以很容易地找到服务器监听的端口。例如，典型的 Web 服务器使用端口 <code>80</code> 和 <code>443</code> , SSH 使用端口 <code>22</code>。<br> Client 也需要注册端口号，这也可以通过 <code>bind()</code> 系统调用完成。然而，客户端并不需要事先指定任何特定的端口号，这是因为客户端不需要被他人主动发现。客户端会首先找到服务端，告知服务端它目前正在使用的端口号。因此，就像代码所展示的那样，客户端程序不需要通过 <code>bind()</code> 系统调用注册端口号，这将交由操作系统决定。也就是说，如果客户端没有注册端口号，当初始化一个连接时，操作系统将会随机分配一个端口号。</p>
+</li>
+<li><p>监听连接。<br> 一旦连接建立，程序使用系统调用 <code>listen()</code> 等待连接。这个调用没有阻塞，因此它并不是真的在“等待”连接。它告知操作系统自己已经准备完毕，可以接收连接请求了。一旦收到连接请求，操作系统将会执行三次握手协议与客户端建立连接。建立好的连接被放置于一个队列中，等待应用接管。<code>listen()</code> 的第二个参数指明了队列最多能存放多少个等待的连接。如果队列已满，后来的连接请求将不会被接受。</p>
+</li>
+<li><p>接受连接请求。<br> 虽然连接已经建立，但对应用程序来说它还是不可用的。一个应用需要明确地表示“接受”连接，这便是系统调用 <code>accept()</code> 的目的。它从队列中取出一个连接请求，建立一个新的 socket，并把 socket 的文件描述符返回给应用程序。如果这个 socket 被标记为不可阻塞，并且队列中没有等待的连接，<code>accept()</code> 将会阻塞调用它的应用。<br> 在程序开头建立的 socket 只被用来和客户端建立连接，它并不被用在任何一个连接上。<br> 当一个连接建立好后，一个新的 socket 会被建立，应用可以通过这个新的 socket 来使用该连接。这样，原来的 socket 就可以继续用来等待新的连接请求。</p>
+</li>
+<li><p>发送和接收数据。<br> 一旦连接建立并被接受，连接双方就可以传输数据了。服务端发送和接收数据的方式与客户端相同。实际上，对于一条建立起来的连接，从数据传输的角度看，两端是平等的，客户端与服务端之间并没有任何不同。</p>
+</li>
+</ol>
+<p>接受多条连接：上面的程序是 TCP 服务端程序的简单例子，它只接受一个连接。一个更实际的 TCP 服务端程序允许多个客户端连接它。实现这个功能的典型做法是在接受一个连接后创建一个子进程，然后再使用新创建的子进程去接管这个连接，这样父进程就会空出来，可以继续通过<br> <code>accept()</code> 系统调用处理另一个等待的连接请求。</p>
+</div><div class="article-licensing box"><div class="licensing-title"><p>杜文亮深度实践笔记 - chap13 - 对TCP的攻击</p><p><a href="http://example.com/2023/12/18/杜文亮深度实践笔记-chap13-对TCP的攻击/">http://example.com/2023/12/18/杜文亮深度实践笔记-chap13-对TCP的攻击/</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>作者</h6><p>Zylll</p></div></div><div class="level-item is-narrow"><div><h6>发布于</h6><p>2023-12-18</p></div></div><div class="level-item is-narrow"><div><h6>更新于</h6><p>2023-12-30</p></div></div><div class="level-item is-narrow"><div><h6>许可协议</h6><p><a class="icons" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="icon fab fa-creative-commons"></i></a><a class="icons" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="icon fab fa-creative-commons-by"></i></a><a class="icons" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="icon fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/tags/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/">网络安全</a></div><!--!--></article></div><!--!--><nav class="post-navigation mt-4 level is-mobile"><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/2023/12/17/%E6%8A%BD%E8%B1%A1%E4%BB%A3%E6%95%B0%E7%AC%94%E8%AE%B0-7-3-%E7%89%B9%E6%AE%8A%E7%9A%84%E6%A0%BC/"><span class="level-item">抽象代数笔记 - 7.3 - 特殊的格</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><!--!--></div><div class="column column-left is-4-tablet is-4-desktop is-4-widescreen  order-1"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="https://s1.imagehub.cc/images/2023/10/19/Photographer.jpeg" alt="Zylll"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">Zylll</p><p class="is-size-6 is-block">Computer Science and Technology</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>Xidian University</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">文章</p><a href="/archives"><p class="title">55</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">分类</p><a href="/categories"><p class="title">6</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">标签</p><a href="/tags"><p class="title">37</p></a></div></div></nav><div class="level is-mobile is-multiline"><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Github" href="https://github.com/zylbeyondlimits"><i class="fab fa-github"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Facebook" href="https://facebook.com"><i class="fab fa-facebook"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Twitter" href="https://twitter.com"><i class="fab fa-twitter"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Dribbble" href="https://dribbble.com"><i class="fab fa-dribbble"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="RSS" href="/"><i class="fas fa-rss"></i></a></div></div></div><div class="card widget" id="toc" data-type="toc"><div class="card-content"><div class="menu"><h3 class="menu-label">目录</h3><ul class="menu-list"><li><a class="level is-mobile" href="#"><span class="level-left"><span class="level-item">1</span><span class="level-item">13.1 Introduction to TCP</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#"><span class="level-left"><span class="level-item">1.1</span><span class="level-item">13.1.1 Advantage of TCP</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#"><span class="level-left"><span class="level-item">1.1.1</span><span class="level-item">1. Providing a Virtual Connection</span></span></a></li><li><a class="level is-mobile" href="#"><span class="level-left"><span class="level-item">1.1.2</span><span class="level-item">2. Maintaining order</span></span></a></li><li><a class="level is-mobile" href="#"><span class="level-left"><span class="level-item">1.1.3</span><span class="level-item">3. Reliablity</span></span></a></li><li><a class="level is-mobile" href="#"><span class="level-left"><span class="level-item">1.1.4</span><span class="level-item">4. Flow and Congestion Control</span></span></a></li></ul></li><li><a class="level is-mobile" href="#"><span class="level-left"><span class="level-item">1.2</span><span class="level-item">13.1.2 Principles When TCP Working</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#"><span class="level-left"><span class="level-item">1.2.1</span><span class="level-item">TCP Cilent</span></span></a></li><li><a class="level is-mobile" href="#"><span class="level-left"><span class="level-item">1.2.2</span><span class="level-item">TCP Server</span></span></a></li></ul></li></ul></li></ul></div></div><style>#toc .menu-list > li > a.is-active + .menu-list { display: block; }#toc .menu-list > li > a + .menu-list { display: none; }</style><script src="/js/toc.js" defer></script></div><div class="card widget" data-type="links"><div class="card-content"><div class="menu"><h3 class="menu-label">链接</h3><ul class="menu-list"><li><a class="level is-mobile" href="https://blog.woshiluo.com/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">woshiluo</span></span><span class="level-right"><span class="level-item tag">blog.woshiluo.com</span></span></a></li><li><a class="level is-mobile" href="https://studyingfather.com/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Studying Father</span></span><span class="level-right"><span class="level-item tag">studyingfather.com</span></span></a></li><li><a class="level is-mobile" href="https://www.cnblogs.com/thornblog/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">T_horn</span></span><span class="level-right"><span class="level-item tag">www.cnblogs.com</span></span></a></li><li><a class="level is-mobile" href="https://www.cnblogs.com/opethrax/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">opethrax</span></span><span class="level-right"><span class="level-item tag">www.cnblogs.com</span></span></a></li><li><a class="level is-mobile" href="https://www.cnblogs.com/BeyondLimits/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">old Zylll</span></span><span class="level-right"><span class="level-item tag">www.cnblogs.com</span></span></a></li></ul></div></div></div><div class="card widget" data-type="categories"><div class="card-content"><div class="menu"><h3 class="menu-label">分类</h3><ul class="menu-list"><li><a class="level is-mobile" href="/categories/%E4%B8%93%E4%B8%9A%E7%9F%A5%E8%AF%86/"><span class="level-start"><span class="level-item">专业知识</span></span><span class="level-end"><span class="level-item tag">29</span></span></a></li><li><a class="level is-mobile" href="/categories/%E7%AE%97%E6%B3%95%E7%AB%9E%E8%B5%9B/"><span class="level-start"><span class="level-item">算法竞赛</span></span><span class="level-end"><span class="level-item tag">12</span></span></a></li><li><a class="level is-mobile" href="/categories/%E7%BC%96%E7%A8%8B%E5%AD%A6%E4%B9%A0/"><span class="level-start"><span class="level-item">编程学习</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%AE%89%E5%85%A8/"><span class="level-start"><span class="level-item">计算机安全</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"><span class="level-start"><span class="level-item">读书笔记</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/%E9%9A%8F%E7%AC%94/"><span class="level-start"><span class="level-item">随笔</span></span><span class="level-end"><span class="level-item tag">5</span></span></a></li></ul></div></div></div><div class="card widget" data-type="archives"><div class="card-content"><div class="menu"><h3 class="menu-label">归档</h3><ul class="menu-list"><li><a class="level is-mobile" href="/archives/2023/"><span class="level-start"><span class="level-item">2023</span></span><span class="level-end"><span class="level-item tag">43</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/"><span class="level-start"><span class="level-item">2022</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/"><span class="level-start"><span class="level-item">2021</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/"><span class="level-start"><span class="level-item">2020</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/archives/2019/"><span class="level-start"><span class="level-item">2019</span></span><span class="level-end"><span class="level-item tag">5</span></span></a></li></ul></div></div></div><div class="card widget" data-type="tags"><div class="card-content"><div class="menu"><h3 class="menu-label">标签</h3><div class="field is-grouped is-grouped-multiline"><div class="control"><a class="tags has-addons" href="/tags/C/"><span class="tag">C++</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/CSP-%E8%AE%A4%E8%AF%81/"><span class="tag">CSP 认证</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/JavaScript/"><span class="tag">JavaScript</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/SQL/"><span class="tag">SQL</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E4%BA%8C%E5%88%86/"><span class="tag">二分</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%9E%9A%E4%B8%BE/"><span class="tag">二进制枚举</span><span class="tag">4</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E4%BD%8D%E8%BF%90%E7%AE%97/"><span class="tag">位运算</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%85%B3%E7%B3%BB%E6%95%B0%E6%8D%AE%E5%BA%93/"><span class="tag">关系数据库</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%89%8D%E7%AB%AF/"><span class="tag">前端</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%8A%A0%E7%BC%AA%E6%89%8B%E8%AE%B0/"><span class="tag">加缪手记</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/"><span class="tag">动态规划</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%93%88%E5%B8%8C/"><span class="tag">哈希</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%9B%BE%E8%AE%BA/"><span class="tag">图论</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%AF%86%E7%A0%81%E5%AD%A6/"><span class="tag">密码学</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%B7%AE%E5%88%86/"><span class="tag">差分</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%B9%B6%E6%9F%A5%E9%9B%86/"><span class="tag">并查集</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%BE%AE%E6%9C%BA%E5%8E%9F%E7%90%86/"><span class="tag">微机原理</span><span class="tag">6</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%80%9D%E7%BB%B4/"><span class="tag">思维</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%8A%BD%E8%B1%A1%E4%BB%A3%E6%95%B0/"><span class="tag">抽象代数</span><span class="tag">12</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%8E%92%E5%BA%8F/"><span class="tag">排序</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%90%9C%E7%B4%A2/"><span class="tag">搜索</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%91%98%E6%8A%84/"><span class="tag">摘抄</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"><span class="tag">操作系统</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%95%B0%E5%AD%A6/"><span class="tag">数学</span><span class="tag">8</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/"><span class="tag">数据库</span><span class="tag">5</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%9E%84%E9%80%A0/"><span class="tag">构造</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%A8%A1%E6%8B%9F/"><span class="tag">模拟</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80/"><span class="tag">汇编语言</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E7%8A%B6%E6%80%81%E5%8E%8B%E7%BC%A9/"><span class="tag">状态压缩</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E7%94%9F%E7%89%A9%E5%AD%A6/"><span class="tag">生物学</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E7%AE%97%E6%B3%95%E5%AE%9E%E9%AA%8C/"><span class="tag">算法实验</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/"><span class="tag">网络安全</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E7%BE%A4%E8%AE%BA/"><span class="tag">群论</span><span class="tag">6</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%AE%89%E5%85%A8/"><span class="tag">计算机安全</span><span class="tag">3</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E8%AE%A1%E7%BB%84/"><span class="tag">计组</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E8%B4%AA%E5%BF%83/"><span class="tag">贪心</span><span class="tag">4</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E8%BD%AF%E4%BB%B6%E5%AE%89%E5%85%A8/"><span class="tag">软件安全</span><span class="tag">1</span></a></div></div></div></div></div></div><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/">Zylll&#039;s Blog</a><p class="is-size-7"><span>&copy; 2023 Zylll</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p><p class="is-size-7">你眼睛里的东西是你脑海里的回忆。</p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("zh-cn");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="回到顶端" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "此网站使用Cookie来改善您的体验。",
+          dismiss: "知道了！",
+          allow: "允许使用Cookie",
+          deny: "拒绝",
+          link: "了解更多",
+          policy: "Cookie政策",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/contrib/auto-render.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/contrib/mhchem.min.js" defer></script><script>window.addEventListener("load", function() {
+            document.querySelectorAll('[role="article"] > .content').forEach(function(element) {
+                renderMathInElement(element);
+            });
+        });</script><script type="text/x-mathjax-config">MathJax.Hub.Config({
+            'HTML-CSS': {
+                matchFontHeight: false
+            },
+            SVG: {
+                matchFontHeight: false
+            },
+            CommonHTML: {
+                matchFontHeight: false
+            },
+            tex2jax: {
+                inlineMath: [
+                    ['$','$'],
+                    ['\\(','\\)']
+                ]
+            }
+        });</script><script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.9/unpacked/MathJax.js?config=TeX-MML-AM_CHTML" defer></script><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="想要查找什么..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"想要查找什么...","untitled":"(无标题)","posts":"文章","pages":"页面","categories":"分类","tags":"标签"});
+        });</script></body></html>
