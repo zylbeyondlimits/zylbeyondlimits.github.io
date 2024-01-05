@@ -1,0 +1,338 @@
+<!doctype html>
+<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>「期末复习」- 计算机安全导论 - chap5 - Zylll&#039;s blog — 你眼睛里的东西是你脑海里的回忆。</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="Zylll&#039;s blog — 你眼睛里的东西是你脑海里的回忆。"><meta name="msapplication-TileImage" content="https://s1.imagehub.cc/images/2023/10/19/Photographer.jpeg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Zylll&#039;s blog — 你眼睛里的东西是你脑海里的回忆。"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="《计算机安全导论》第五章期末复习知识点总结。"><meta property="og:type" content="blog"><meta property="og:title" content="「期末复习」- 计算机安全导论 - chap5"><meta property="og:url" content="http://example.com/2024/01/05/%E3%80%8C%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0%E3%80%8D-%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%AE%89%E5%85%A8%E5%AF%BC%E8%AE%BA-chap5/"><meta property="og:site_name" content="Zylll&#039;s blog — 你眼睛里的东西是你脑海里的回忆。"><meta property="og:description" content="《计算机安全导论》第五章期末复习知识点总结。"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="https://s1.imagehub.cc/images/2024/01/05/1b4e5c998e0b8abb89fe68619ca4cfc6.png"><meta property="og:image" content="https://s1.imagehub.cc/images/2024/01/05/7a93e03436ae1a4c7f0154065ce843c4.png"><meta property="og:image" content="https://s1.imagehub.cc/images/2024/01/05/f1dd2965b9ccbf942c10141ab033bb53.png"><meta property="og:image" content="https://s1.imagehub.cc/images/2024/01/05/ccbc090e73e2431e67f46966eb51334c.png"><meta property="og:image" content="https://s1.imagehub.cc/images/2024/01/05/f4ea854cda589489c1c246a2e5c5e036.png"><meta property="og:image" content="https://s1.imagehub.cc/images/2024/01/05/006ce5500b8bd92f7dcd6f04b065a050.png"><meta property="og:image" content="https://s1.imagehub.cc/images/2024/01/05/c19972f7590c5836209fc5456550a8b0.png"><meta property="og:image" content="https://s1.imagehub.cc/images/2024/01/05/825d3c441b47d14d15d62746125e4400.png"><meta property="og:image" content="https://s1.imagehub.cc/images/2024/01/05/4ec0c3b8cfa93e1514c898e2f01f6cbf.png"><meta property="article:published_time" content="2024-01-05T06:11:07.000Z"><meta property="article:modified_time" content="2024-01-05T12:22:31.201Z"><meta property="article:author" content="Zylll"><meta property="article:tag" content="计算机安全"><meta property="article:tag" content="网络安全"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="https://s1.imagehub.cc/images/2024/01/05/1b4e5c998e0b8abb89fe68619ca4cfc6.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://example.com/2024/01/05/%E3%80%8C%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0%E3%80%8D-%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%AE%89%E5%85%A8%E5%AF%BC%E8%AE%BA-chap5/"},"headline":"「期末复习」- 计算机安全导论 - chap5","image":["https://s1.imagehub.cc/images/2024/01/05/1b4e5c998e0b8abb89fe68619ca4cfc6.png","https://s1.imagehub.cc/images/2024/01/05/7a93e03436ae1a4c7f0154065ce843c4.png","https://s1.imagehub.cc/images/2024/01/05/f1dd2965b9ccbf942c10141ab033bb53.png","https://s1.imagehub.cc/images/2024/01/05/ccbc090e73e2431e67f46966eb51334c.png","https://s1.imagehub.cc/images/2024/01/05/f4ea854cda589489c1c246a2e5c5e036.png","https://s1.imagehub.cc/images/2024/01/05/006ce5500b8bd92f7dcd6f04b065a050.png","https://s1.imagehub.cc/images/2024/01/05/c19972f7590c5836209fc5456550a8b0.png","https://s1.imagehub.cc/images/2024/01/05/825d3c441b47d14d15d62746125e4400.png","https://s1.imagehub.cc/images/2024/01/05/4ec0c3b8cfa93e1514c898e2f01f6cbf.png"],"datePublished":"2024-01-05T06:11:07.000Z","dateModified":"2024-01-05T12:22:31.201Z","author":{"@type":"Person","name":"Zylll"},"publisher":{"@type":"Organization","name":"Zylll's blog — 你眼睛里的东西是你脑海里的回忆。","logo":{"@type":"ImageObject","url":{"text":"Zylll's Blog"}}},"description":"《计算机安全导论》第五章期末复习知识点总结。"}</script><link rel="canonical" href="http://example.com/2024/01/05/%E3%80%8C%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0%E3%80%8D-%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%AE%89%E5%85%A8%E5%AF%BC%E8%AE%BA-chap5/"><link rel="icon" href="https://s1.imagehub.cc/images/2023/10/19/Photographer.jpeg"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css"><!--!--><!--!--><!--!--><!--!--><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><!--!--><!--!--><!-- hexo injector head_end start --><script>
+  (function () {
+      function switchTab() {
+          if (!location.hash) {
+            return;
+          }
+
+          const id = '#' + CSS.escape(location.hash.substring(1));
+          const $tabMenu = document.querySelector(`.tabs a[href="${id}"]`);
+          if (!$tabMenu) {
+            return;
+          }
+
+          const $tabMenuContainer = $tabMenu.parentElement.parentElement;
+          Array.from($tabMenuContainer.children).forEach($menu => $menu.classList.remove('is-active'));
+          Array.from($tabMenuContainer.querySelectorAll('a'))
+              .map($menu => document.getElementById($menu.getAttribute("href").substring(1)))
+              .forEach($content => $content.classList.add('is-hidden'));
+
+          if ($tabMenu) {
+              $tabMenu.parentElement.classList.add('is-active');
+          }
+          const $activeTab = document.querySelector(id);
+          if ($activeTab) {
+              $activeTab.classList.remove('is-hidden');
+          }
+      }
+      switchTab();
+      window.addEventListener('hashchange', switchTab, false);
+  })();
+  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"><style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style></head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/">Zylll&#039;s Blog</a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" target="_blank" rel="noopener" href="https://zylbeyondlimits.github.io/2023/10/19/About%20me/">About Me</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a><a class="navbar-item is-hidden-tablet catalogue" title="目录" href="javascript:;"><i class="fas fa-list-ul"></i></a><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-8-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2024-01-05T06:11:07.000Z" title="2024/1/5 14:11:07">2024-01-05</time>发表</span><span class="level-item"><time dateTime="2024-01-05T12:22:31.201Z" title="2024/1/5 20:22:31">2024-01-05</time>更新</span><span class="level-item"><a class="link-muted" href="/categories/%E4%B8%93%E4%B8%9A%E7%9F%A5%E8%AF%86/">专业知识</a></span><span class="level-item">39 分钟读完 (大约5917个字)</span></div></div><h1 class="title is-3 is-size-4-mobile">「期末复习」- 计算机安全导论 - chap5</h1><div class="content"><h2><span id="网络如何影响计算机安全目标-cia">网络如何影响计算机安全目标 C.I.A.</span></h2><ul>
+<li><p><strong>机密性</strong>：网络协议的<strong>任何分层中</strong>，<strong>都没有要求传输数据的机密性</strong>。<strong>需要修订相关协议来完成机密性</strong>。可以在<strong>应用层</strong>进行加密协议的设计，也可以在<strong>网络层</strong>。</p>
+</li>
+<li><p><strong>完整性</strong>：封装的<strong>数据包</strong>中的头和尾部都有<strong>简单的校验和</strong>，以检查传输数据是否有改变。<strong>但这些校验和不是密码学意义下安全的</strong>，因此<strong>不能提供计算机安全层面的完整性</strong>。</p>
+</li>
+<li><p><strong>可用性</strong>：网络协议设计之初主要考虑的是<strong>节点发生故障时如何保证可用性</strong>，<strong>并未考虑攻击者存在时的情形</strong>。如<strong>拒绝服务攻击</strong>会影响系统<strong>可用性</strong>。</p>
+</li>
+</ul>
+<h2><span id="网络如何影响计算机安全目标-aaa">网络如何影响计算机安全目标 A.A.A.</span></h2><ul>
+<li><p><strong>保证</strong>：默认情况下网络中数据包可以在任何两个节点间传输。如果需要引入权限和策略来控制网络中的数据流，必须通过显式得的措施来实现。</p>
+</li>
+<li><p><strong>真实性</strong>：网络协议的数据格式中没有存储数字签名的字段，也没有用户身份的概念。<strong>如果需要引入身份证明和数字签名，必须在应用层完成。</strong></p>
+</li>
+<li><p><strong>匿名</strong>：<strong>网络协议没有用户身份的概念，因此具有内在的匿名性</strong>。对于匿名攻击，可以通过确定用户正在使用网络中的哪台计算机来确定。</p>
+</li>
+</ul>
+<h2><span id="1-以太网">1. 以太网</span></h2><p>基本概念：以太网包括<strong>通信所使用的物理介质</strong>以及<strong>链路层的协议标准 <code>IEEE 802.3</code></strong>，是<strong>现有局域网采用的最通用的技术标准</strong>。<strong>不同帧在以太网电缆上同时传输时会产生冲突</strong>，需要丢弃并重传冲突帧。</p>
+<p>冲突处理：以太网协议使用 <code>CSMA/CD</code>（载波监听多路访问及冲突检测）技术来避免冲突。</p>
+<p>集线器：工作与物理层，<strong>将所有帧广播给与之相连的所有设备</strong>。<strong>缺点</strong>是<strong>与集线器相连的所有设备共享带宽，传输效率低下</strong>。且由于是<strong>广播</strong>，所以<strong>数据容易被窃听</strong>。</p>
+<p>交换机：设备首次使用时，与集线器类似。但随着时间的推移，交换机会记录连接到自己各个接口的计算机地址。之后交换机会将接收到的帧发送到特定的接收端，而不是广播出去。</p>
+<h2><span id="2-mac-地址">2. MAC 地址</span></h2><p>用来表示互联网上每一个站点的标识符，采用<strong>十六进制数</strong>表示，<strong>共六个字节</strong>。<br>其中，前三个字节是由IEEE的注册管理机构RA负责给不同厂家分配的代码(高位24位），后三个字节(低位24位)由各厂家自行指派给生产的适配器接口，称为扩展标识符（唯一性）。</p>
+<p>一个地址块可以生成 <mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: 0;" xmlns="http://www.w3.org/2000/svg" width="2.919ex" height="1.904ex" role="img" focusable="false" viewbox="0 -841.7 1290.1 841.7"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="msup"><g data-mml-node="mn"><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"/></g><g data-mml-node="TeXAtom" transform="translate(533,363) scale(0.707)" data-mjx-texclass="ORD"><g data-mml-node="mn"><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"/><path data-c="34" d="M462 0Q444 3 333 3Q217 3 199 0H190V46H221Q241 46 248 46T265 48T279 53T286 61Q287 63 287 115V165H28V211L179 442Q332 674 334 675Q336 677 355 677H373L379 671V211H471V165H379V114Q379 73 379 66T385 54Q393 47 442 46H471V0H462ZM293 211V545L74 212L183 211H293Z" transform="translate(500,0)"/></g></g></g></g></g></svg></mjx-container> 个不同的地址。因此，在相同网络中两个设备具有相同 MAC 地址的概率只有百万分之一。<br>MAC地址是网卡决定的，一般是固定的。但可以通过网卡的驱动程序软件来修改 MAC 地址。如Linux下可以通过 <code>ifconfig</code> 来修改。从安全角度考虑，不能使用MAC地址作为识别网络流源头的依据。</p>
+<h2><span id="3-arp-欺骗">3. ARP 欺骗</span></h2><h3><span id="31-arp-简介">3.1 ARP 简介</span></h3><p>ARP（Address resolution protocol）：地址解析协议，是一种<strong>链路层协议</strong>，其主要功能是<strong>将给定主机的网络层地址解析为主机的硬件地址</strong>。</p>
+<p>主机发送信息时，将<strong>包含目标 IP 地址的 ARP 请求广播到网络上的所有主机</strong>，并接收返回消息，<strong>以此确定目标的物理地址</strong>。<br>收到返回消息后，将<strong>该 IP 地址和物理地址</strong>存入本机 ARP 缓存中，并保留一定时间，下次请求时<strong>直接查询</strong> ARP 缓存以节约资源。</p>
+<h3><span id="32-arp-欺骗攻击">3.2 ARP 欺骗攻击</span></h3><p>ARP 建立在网络中各个主机互相信任的基础上。<br>攻击者可以<strong>向某一主机发送伪 ARP 应答报文</strong>，<strong>使其发送的信息无法到达预期的主机或到达错误的主机</strong>，这就构成了一个 <strong>ARP 欺骗</strong>。</p>
+<p>ARP 协议简单高效，但<strong>缺乏身份认证</strong>，容易受<strong>中间人攻击</strong>。</p>
+<p>例：<br>攻击者 C 向 A 发送一个 ARP 响应，将 B 的 IP 地址与 C（自己）的 MAC 地址关联；<br>同时 C 还向 B 发送一个 ARP 响应，将 A 的 IP 地址与 C（自己）的 MAC 地址关联。<br>这会导致：最终所有 A 和 B 之间的通信都将经过 C。</p>
+<h3><span id="33-arp-欺骗预防">3.3 ARP 欺骗预防</span></h3><ol>
+<li><p><strong>检查相同 MAC 地址是否在局域网中多次出现</strong>，将其作为是否存在 ARP 欺骗的标志。</p>
+</li>
+<li><p>静态ARP表：网络管理员<strong>手动指定</strong>路由器的 ARP 缓存来将具体的 MAC 地址和特定的 IP 地址进行绑定。由于新设备加入网络时，需要手动添加，所以该方法不够灵活。</p>
+</li>
+<li><p>更加复杂和灵活的措施：<code>anti-arpsroof</code>、<code>XArp</code>、<code>Arpwatch</code>，这些程序会仔细检查所有的 ARP 数据包，并将数据包的内容与所存储的 ARP 表项纪录做比较，以检测并防止 ARP 欺骗。</p>
+</li>
+</ol>
+<h2><span id="4-网际协议ip">4. 网际协议（IP）</span></h2><p>IP：网络层协议，尽最大努力<strong>将一个数据包从源节点路由到目的节点</strong>。<br>节点由 IP 地址标识，IPv4 地址为 32 位，IPv6 地址为 128 位。</p>
+<p>IP 包路由：<br>如果<strong>数据包的目的地址</strong>与<strong>发送数据包的主机在同一个局域网</strong>内，则使用 <strong>ARP 协议</strong>确定目的地址的 MAC 地址，并发送包；<br>否则，数据包<strong>被传送至局域网的网关</strong>，网关根据<strong>路由表</strong>来确定<strong>如何转发数据包</strong>。</p>
+<p>路由器：为数据包寻找一条<strong>最佳的传输路径</strong>，并将该数据有效地传送到目的站点。选择最佳路径的策略即<strong>路由算法</strong>。<br>为了便于选择，在路由器中保存着传输路径的相关数据（<strong>路由表</strong>）供路由选择时使用，表中包含的信息决定了数据转发的策略。</p>
+<p>TTL(time-to-live)：<strong>每个数据包在路由过程中的生存周期</strong>，用<strong>跳数</strong>来决定，<strong>一般最大跳数为 255</strong>。</p>
+<p>路由器操作：对每个数据包执行<strong>丢弃、发送或转发</strong>三个操作。</p>
+<p>路由协议：<br><strong>OSPF</strong>（Open shortest path first）决定如何<strong>在自治系统中</strong>路由数据包，<strong>其策略是数据包应沿最短路径传输</strong>。<br><strong>BGP</strong>（Border gateway protocol）决定如何<strong>在自治系统间</strong>路由数据包。</p>
+<p>IP 地址与子网掩码：<br>例如 IP 地址为 <code>192.168.1.100</code>，子网掩码为 <code>255.255.255.0</code>，则该地址的<strong>网络部分</strong>为 <code>192.168.1.0</code>，主机部分为 <code>0.0.0.100</code>。</p>
+<p>IPv4 地址已经快耗尽的解决方案：</p>
+<ol>
+<li>IPv6</li>
+<li><strong>网络地址转换</strong>（Network address translation, <strong>NAT</strong>)<br>大部分电脑都配置有 NAT 服务，<strong>该服务允许设备在本地使用自定义的私人 IP 地址</strong>。当要与互联网通信时，NAT 会将<strong>私人 IP</strong> 转译为其在互联网上的<strong>真实 IP</strong>。</li>
+</ol>
+<p>IP 数据包：</p>
+<p><a target="_blank" rel="noopener" href="https://www.imagehub.cc/image/1iujod"><img src="https://s1.imagehub.cc/images/2024/01/05/1b4e5c998e0b8abb89fe68619ca4cfc6.png" alt="1b4e5c998e0b8abb89fe68619ca4cfc6.png"></a></p>
+<h2><span id="5-网际控制消息协议icmp">5. 网际控制消息协议（ICMP）</span></h2><p>ICMP 协议：<strong>用于在主机、路由器之间传递控制消息</strong>。<br>控制消息：<strong>网络通不通、主机是否可达、路由是否可用等网络本身的消息</strong>。</p>
+<p>ICMP 消息类型：</p>
+<ul>
+<li>回显请求（echo request）</li>
+<li>回显响应（echo response）</li>
+<li>超时（time exceeded）</li>
+<li>目的地不可达（destination unreachable）</li>
+</ul>
+<p>使用 ICMP 消息的常用网络管理工具：<code>ping</code> 命令和 <code>traceroute</code> 命令.</p>
+<p>Ping (Packet Internet Groper)，因特网包探索器，<strong>用于测试网络是否通畅或者网络连接速度的程序</strong>。Ping 发送一个 <strong>ICMP 回声请求消息</strong>给目的地，并报告<strong>是否收到 ICMP 回声应答消息</strong>。</p>
+<p>Traceroute，利用 ICMP 协议<strong>定位计算机和目标计算机之间的所有路由器</strong>。<br><a target="_blank" rel="noopener" href="https://www.imagehub.cc/image/1iv2WA"><img src="https://s1.imagehub.cc/images/2024/01/05/7a93e03436ae1a4c7f0154065ce843c4.png" alt="7a93e03436ae1a4c7f0154065ce843c4.png"></a></p>
+<h2><span id="6-ip-地址欺骗ip-spoofing">6. IP 地址欺骗（IP Spoofing）</span></h2><h3><span id="61-ip-地址欺骗原理">6.1 IP 地址欺骗原理</span></h3><p>IP 地址欺骗：<strong>恶意用户产生的 IP 数据包中的源 IP 地址是伪造的</strong>，以便<strong>冒充其他系统或发件人的身份</strong>。源 IP 地址修改后，IP 数据包头部校验和也需重新计算。</p>
+<p>如果攻击者用假冒的源 IP 地址，那么他不会收到服务器的响应，服务器会把数据包返回给具有假冒 IP 地址的主机。攻击者采用 IP 地址欺骗时，表明他不在乎是否能收到响应，或者他有接收到响应的其他方法。如拒绝服务攻击。</p>
+<p>IP 地址欺骗可以用在<strong>规避防火墙策略</strong>(6.2节)或者进行<strong>TCP会话劫持</strong>(5.4节)中。</p>
+<h3><span id="62-ip-地址欺骗应对措施">6.2 IP 地址欺骗应对措施</span></h3><ol>
+<li><p>边缘路由器配置<br>边缘路由器在配置时，<strong>可以阻止源地址在域内，但实际地址是域之外的数据包</strong>。<br>边缘路由器<strong>也可以阻止源地址是域外的，但是从域内往域外发送的数据包</strong>。</p>
+</li>
+<li><p>IP 追踪技术<br>这一技术可以追踪<strong>数据包返回到实际源地址的路径</strong>。根据追踪到的信息，可以向各种自治系统发送请求，<strong>要求自治系统阻止来自该路径的数据包，直到确定恶意软件或恶意用户被清除为止</strong>。</p>
+</li>
+</ol>
+<h2><span id="7-数据包嗅探packet-sniffing">7. 数据包嗅探（Packet Sniffing）</span></h2><h3><span id="71-wireshark">7.1 Wireshark</span></h3><p>Wireshark（前称Ethereal）是一个网络数据包分析软件。其功能是撷取网络封包，并尽可能显示出最为详细的网络数据包资料。<br>Wireshark 使用 <code>WinPCAP</code> 作为接口，<strong>直接与网卡进行数据报文交换</strong>。使用时网卡被设置为<strong>混杂模式</strong>（Promiscuous Mode）。</p>
+<p>混杂模式：</p>
+<ul>
+<li>一般情况下，当电脑通过网卡 NIC 接收到数据包时，会检测目的地址是否与自己的 MAC 地址相同来判断“这个数据包是不是发给我的”。如果不同则大多数情况下会选择丢弃该数据包。 OS 提供了一种特殊模式来支持数据包嗅探（即使不是发给自己的也不选择丢弃，这样才可以“偷”到别人的数据包），该模式叫做混杂模式（Promiscuous Mode）。在混杂模式下，一台机器的网卡能够接收所有经过它的数据流，而不论其目的地址是否是它。</li>
+</ul>
+<p>网络管理员使用 Wireshark 来<strong>检测网络问题</strong>，网络安全工程师使用 Wireshark 来<strong>检查资讯安全相关问题</strong>。开发者使用 Wireshark 来<strong>为新的通讯协定除错</strong>，普通使用者使用 Wireshark 来<strong>学习网络协定的相关知识</strong>。当然，有的人也会居心叵测的用它来寻找一些敏感信息。</p>
+<h3><span id="72-防止数据包嗅探">7.2 防止数据包嗅探</span></h3><ol>
+<li><p><strong>使用以太网交换机而不是集线器</strong>，降低数据包被嗅探的可能性。但对于无线网络，该方法无能为力。</p>
+</li>
+<li><p><strong>检测网卡是否被设置为混杂模式</strong>。<br>可能的检测方式：<br>(1) 当处于混杂模式时，<strong>计算机系统处理所有数据包会比较慢</strong>。<br>(2) 对无效数据包的响应，有可能表明网卡处于混杂模式。<br>例如向一台被怀疑的主机发送数据包，其 IP 地址与 MAC 地址不匹配，网卡会丢弃数据包。但如果网卡运行在混杂模式，有可能会发送一个响应。</p>
+</li>
+<li><p><strong>高层协议使用加密防止敏感信息泄露</strong>，如 <code>HTTPS</code> 协议。</p>
+</li>
+</ol>
+<h2><span id="8-传输层">8. 传输层</span></h2><p>端口：<code>16</code> 比特的端口号，用来标识应用层不同服务。<br>例如，FTP 使用 21 端口号，Telnet 使用 23 端口号，SMTP 使用 25 端口号，HTTP 使用 80 端口号， HTTPS 使用 443 端口号。</p>
+<p>TCP：<strong>面向连接的、可靠的</strong>。面向连接意味着实现会比较复杂，可靠的是指信息<strong>会完整、有序地到达</strong>。<strong>如果数据包丢失，TCP会保证重传</strong>。 TCP是传输文件、网页和电子邮件的首选协议。</p>
+<p>UDP：<strong>无连接的、不可靠但速度快</strong>。基于IP的语音会话(VoIP)适合于使用UDP协议。</p>
+<h3><span id="81-tcp-协议">8.1 TCP 协议</span></h3><p>基于 IP 协议，使用<strong>三次握手协议</strong>初始化，每个数据包都有编号。</p>
+<p>累积确认：发送方向接收方发送指定的数据包后，接收方向发送方发送确认收到这些数据包。</p>
+<p><a target="_blank" rel="noopener" href="https://www.imagehub.cc/image/1iZ9X6"><img src="https://s1.imagehub.cc/images/2024/01/05/f1dd2965b9ccbf942c10141ab033bb53.png" alt="f1dd2965b9ccbf942c10141ab033bb53.png"></a></p>
+<p><strong>流量控制</strong>：用来防止在数据传送过程中“发送方发送速度过快，接收方来不及接受从而导致数据包意外丢失”的情况。流量控制主要使用滑动窗口协议。</p>
+<p><strong>拥塞控制</strong>：用来防止“过多的数据注入到网络，导致网络中的路由器或链路过载”的情况。</p>
+<p>校验和：使用<strong>循环冗余校验（CRC）</strong> 来确保传送数据的正确性，检测由网络错误引发的数据不一致性，但不能检测恶意篡改。</p>
+<h3><span id="82-udp-协议">8.2 UDP 协议</span></h3><p><strong>无需三次握手建立连接</strong>，允许直接发送数据报。<br>UDP是不可靠连接，<strong>不保证数据包的有序到达</strong>。它假定<strong>检查数据报序列中丢失数据报</strong>的工作<strong>由应用程序完成</strong>。使用<strong>16 位的校验和</strong>来验证每个数据包的完整性。<br><strong>UDP 的数据传输速度要远远快于 TCP</strong>。它常用于对时间敏感的应用程序，<strong>其更加注重传输速度而不是完整性</strong>，如 DNS 和 VoIP。</p>
+<p><a target="_blank" rel="noopener" href="https://www.imagehub.cc/image/1iZhGJ"><img src="https://s1.imagehub.cc/images/2024/01/05/ccbc090e73e2431e67f46966eb51334c.png" alt="ccbc090e73e2431e67f46966eb51334c.png"></a></p>
+<h2><span id="9-tcp会话劫持">9. TCP会话劫持</span></h2><p>TCP 序列预测攻击<strong>企图猜测 TCP 会话时的初始序列号，以建立伪造的 TCP 会话</strong>。</p>
+<p>一个可能的攻击方案如下：</p>
+<ol>
+<li><strong>攻击者针对受害客户端发动拒绝服务攻击，防止客户端干扰自己的攻击</strong>；</li>
+<li>攻击者向服务器发送一个 SYN 包，将源 IP 地址<strong>伪造成受害客户端的 IP 地址</strong>；</li>
+<li>在等待服务器向客户端发送响应之后，<strong>攻击者通过发送一个 ACK 数据包来结束 TCP 握手，该数据包的序列号是预测的下一个序列号</strong>；</li>
+<li><strong>攻击者以受害客户端名义向服务器发送请求</strong>。</li>
+</ol>
+<h3><span id="91-盲注入">9.1 盲注入</span></h3><p>TCP 序列号预测攻击中使用了 IP 欺骗，<strong>攻击者将无法从服务器收到任何响应</strong>。<br>盲注入允许攻击者使用请求者的源 IP 地址来执行某些命令，从而破坏系统。<br><strong>盲注入一般会注入包含命令的数据包，从而建立将响应返回给攻击者的连接。</strong></p>
+<h3><span id="92-ack-风暴">9.2 ACK 风暴</span></h3><p><strong>盲注入后客户端不会向服务器发送同步消息，导致不同步现象。</strong><br>此时，客户端和服务器会向对方发送 ACK 消息，每一方都想告诉对方需要开始使用正确的序列号。这种反复的通信被称为 ACK 风暴。</p>
+<h3><span id="93-完全会话劫持">9.3 完全会话劫持</span></h3><p>当攻击者与目标服务器或客户端<strong>在同一网段</strong>时，攻击者可以完全劫持已有的 TCP 会话。<strong>使用数据包嗅探攻击，攻击者可以知道建立会话时数据包的序列号</strong>。</p>
+<p>完全会话劫持与 ARP 欺骗结合的中间人攻击：攻击者首先使用 ARP 欺骗，将会话双方的通讯流暗中改变，这种改变对会话双方来说是透明。其次，攻击者利用完全会话劫持来截获会话双方的所有消息。</p>
+<h3><span id="94-针对会话劫持的安全措施">9.4 针对会话劫持的安全措施</span></h3><p><strong>在 IP 层或者应用层使用认证和加密</strong>，如 IPSec 或者应用层安全协议。<br>网站应避免创建以安全身份验证措施开始，但后来切换到未加密交换的会话，这样会产生 TCP 会话劫持攻击的风险。</p>
+<h2><span id="10-拒绝服务攻击">10. 拒绝服务攻击</span></h2><p>拒绝服务攻击亦称洪水攻击，其目的在于<strong>使目标电脑的网络或系统资源耗尽，使服务暂时中断或停止，导致其正常用户无法访问。</strong></p>
+<p>当攻击者<strong>使用网络上两个或以上被攻陷的电脑作为“僵尸”</strong>，向特定的目标发动“拒绝服务”式攻击时，其称为<strong>分布式拒绝服务攻击</strong>。<br>攻击发起者一般针对重要服务进行攻击，如银行，信用卡支付网关，甚至根域名服务器。</p>
+<p>攻击症状：<strong>网络异常缓慢（打开文件或访问网站）</strong>、特定网站无法访问、无法访问任何网站、<strong>垃圾邮件的数量急剧增加</strong>、无线或有线网络连接异常断开、长时间尝试访问网站或任何互联网服务时被拒绝、服务器容易断线、卡顿等。</p>
+<p><a target="_blank" rel="noopener" href="https://www.imagehub.cc/image/1iZp9e"><img src="https://s1.imagehub.cc/images/2024/01/05/f4ea854cda589489c1c246a2e5c5e036.png" alt="f4ea854cda589489c1c246a2e5c5e036.png"></a></p>
+<h3><span id="101-icmp-攻击">10.1 ICMP 攻击</span></h3><p><strong>ping 洪水攻击</strong>：<strong>通过功能强大的计算机，向单个受害服务器发送大量回显请求（echo request）命令</strong>。这样受害服务器会被这些网络流量淹没，无法响应合法的请求。</p>
+<p><strong>Smurf 攻击</strong>：<strong>攻击者向网络广播地址发送 ICMP 包</strong>，<strong>并将回复地址设置成受害主机的 IP 地址</strong>，通过使用 <strong>ICMP 应答请求数据包</strong>来淹没受害主机的方式进行。</p>
+<p>如何阻止 Smurf 攻击：</p>
+<ol>
+<li>管理员<strong>应该将网络中的主机和路由器配置为忽略广播请求</strong>。</li>
+<li><strong>避免直接向广播地址转发数据包</strong>。</li>
+<li>忽略 ping 请求。</li>
+</ol>
+<h3><span id="102-syn-洪水攻击">10.2 SYN 洪水攻击</span></h3><p>攻击者故意延迟或不发送握手确认消息。</p>
+<p>假设连接发起方是 A，接受方是 B。A 发送 SYN 消息给 B，B反馈 SYN-ACK 消息给 A，使连接进入半打开状态。此时 B 会给每个半打开连接都设一个 Timer，如果超过时间还没有收到 A 的 ACK 消息，则重新发送一次 SYN-ACK 消息给 A，直到重试超过一定次数时才会放弃。<br>B 维护半打开连接需要分配内核资源，如果 A 发送大量的 SYN 消息给 B 而不回复 ACK 时，SYN Flood 攻击就形成了。<br>攻击方 A 可以控制肉鸡向 B 发送大量 SYN 消息但不响应 ACK 消息，或者干脆伪造 SYN 消息中的 Source IP，使 B 反馈的 SYN-ACK 消息石沉大海，导致 B 被大量注定不能完成的半打开连接占据，直到资源耗尽，停止响应正常的连接请求。</p>
+<p><a target="_blank" rel="noopener" href="https://www.imagehub.cc/image/1iZoYZ"><img src="https://s1.imagehub.cc/images/2024/01/05/006ce5500b8bd92f7dcd6f04b065a050.png" alt="006ce5500b8bd92f7dcd6f04b065a050.png"></a><br><a target="_blank" rel="noopener" href="https://www.imagehub.cc/image/1iZmyI"><img src="https://s1.imagehub.cc/images/2024/01/05/c19972f7590c5836209fc5456550a8b0.png" alt="c19972f7590c5836209fc5456550a8b0.png"></a></p>
+<h3><span id="103-防范-syn-洪水攻击">10.3 防范 SYN 洪水攻击</span></h3><p>SYN Cookie机制：在TCP服务器接收到TCP SYN包并返回TCP SYN+ACK包时，不分配专门的数据区，而是根据SYN包计算一个cookie值。 这个cookie作为将要返回的SYN ACK包的初始序列号。</p>
+<p>SYN + ACK包的32比特结构如下：<br>(1) 前5比特是时间戳，由每分钟按模32递增的计数器实现。(2) 中间3比特是编码值，表示传输段的最大值。(3) 最后24比特是基于密钥k，由服务器和客户端IP地址，端口号和前面使用的时间戳计算出来的MAC值。</p>
+<p> 当客户端返回一个ACK包时，服务器首先根据其前5比特判断是否过期；其次服务器根据包头信息重新计算24比特的MAC值，与返回的确认序列号(初始序列号 + 1)进行对比；最后，服务器对中间3比特进行解码，完成对SYN队列项的重构。如果验证通过，则服务器发起TCP会话。</p>
+<p> <a target="_blank" rel="noopener" href="https://www.imagehub.cc/image/1iZzFh"><img src="https://s1.imagehub.cc/images/2024/01/05/825d3c441b47d14d15d62746125e4400.png" alt="825d3c441b47d14d15d62746125e4400.png"></a></p>
+<p><a target="_blank" rel="noopener" href="https://www.imagehub.cc/image/1iZ70G"><img src="https://s1.imagehub.cc/images/2024/01/05/4ec0c3b8cfa93e1514c898e2f01f6cbf.png" alt="4ec0c3b8cfa93e1514c898e2f01f6cbf.png"></a></p>
+<h2><span id="11-ip-地址回溯">11. IP 地址回溯</span></h2><p>由于 IP 地址欺骗，很难确定攻击者的真正源 IP 地址。<strong>IP 地址回溯能够确定数据包的真实来源，而不依赖于数据包头部的 IP 地址。</strong></p>
+<p>数据包标记技术：路由器基于数据包的相关路径信息确定地或者概率地标注转发数据包。受害者收集到足够数据包就能够重构攻击者的路径。一个简单的标注方法在经过路由器的数据包中追加其 IP 地址，但路由器开销会增加。</p>
+<p>节点采样：不在每个数据包中追加路径信息，而使用 IP 数据包中的一个字段就可以记录路径信息。每个路由器以概率 p 用自己的地址覆盖每个数据包的这个字段。如果标记足够多的数据包，受害者就可以使用这个字段来确定攻击者和受害者之间途径的每个路由器。</p>
+</div><div class="article-licensing box"><div class="licensing-title"><p>「期末复习」- 计算机安全导论 - chap5</p><p><a href="http://example.com/2024/01/05/「期末复习」-计算机安全导论-chap5/">http://example.com/2024/01/05/「期末复习」-计算机安全导论-chap5/</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>作者</h6><p>Zylll</p></div></div><div class="level-item is-narrow"><div><h6>发布于</h6><p>2024-01-05</p></div></div><div class="level-item is-narrow"><div><h6>更新于</h6><p>2024-01-05</p></div></div><div class="level-item is-narrow"><div><h6>许可协议</h6><p><a class="icons" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="icon fab fa-creative-commons"></i></a><a class="icons" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="icon fab fa-creative-commons-by"></i></a><a class="icons" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="icon fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%AE%89%E5%85%A8/">计算机安全</a><a class="link-muted mr-2" rel="tag" href="/tags/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/">网络安全</a></div><!--!--></article></div><!--!--><nav class="post-navigation mt-4 level is-mobile"><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/2024/01/02/%E3%80%8C%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0%E3%80%8D-%E5%BE%AE%E6%9C%BA%E5%8E%9F%E7%90%86%E4%B8%8E%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1-chap3/"><span class="level-item">「期末复习」- 微机原理与系统设计 - chap3</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><!--!--></div><div class="column column-left is-4-tablet is-4-desktop is-4-widescreen  order-1"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="https://s1.imagehub.cc/images/2023/10/19/Photographer.jpeg" alt="Zylll"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">Zylll</p><p class="is-size-6 is-block">Computer Science and Technology</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>Xidian University</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">文章</p><a href="/archives"><p class="title">62</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">分类</p><a href="/categories"><p class="title">6</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">标签</p><a href="/tags"><p class="title">38</p></a></div></div></nav><div class="level is-mobile is-multiline"><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Github" href="https://github.com/zylbeyondlimits"><i class="fab fa-github"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Facebook" href="https://facebook.com"><i class="fab fa-facebook"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Twitter" href="https://twitter.com"><i class="fab fa-twitter"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Dribbble" href="https://dribbble.com"><i class="fab fa-dribbble"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="RSS" href="/"><i class="fas fa-rss"></i></a></div></div></div><div class="card widget" id="toc" data-type="toc"><div class="card-content"><div class="menu"><h3 class="menu-label">目录</h3><ul class="menu-list"><li><a class="level is-mobile" href="#"><span class="level-left"><span class="level-item">1</span><span class="level-item">网络如何影响计算机安全目标 C.I.A.</span></span></a></li><li><a class="level is-mobile" href="#"><span class="level-left"><span class="level-item">2</span><span class="level-item">网络如何影响计算机安全目标 A.A.A.</span></span></a></li><li><a class="level is-mobile" href="#"><span class="level-left"><span class="level-item">3</span><span class="level-item">1. 以太网</span></span></a></li><li><a class="level is-mobile" href="#"><span class="level-left"><span class="level-item">4</span><span class="level-item">2. MAC 地址</span></span></a></li><li><a class="level is-mobile" href="#"><span class="level-left"><span class="level-item">5</span><span class="level-item">3. ARP 欺骗</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#"><span class="level-left"><span class="level-item">5.1</span><span class="level-item">3.1 ARP 简介</span></span></a></li><li><a class="level is-mobile" href="#"><span class="level-left"><span class="level-item">5.2</span><span class="level-item">3.2 ARP 欺骗攻击</span></span></a></li><li><a class="level is-mobile" href="#"><span class="level-left"><span class="level-item">5.3</span><span class="level-item">3.3 ARP 欺骗预防</span></span></a></li></ul></li><li><a class="level is-mobile" href="#"><span class="level-left"><span class="level-item">6</span><span class="level-item">4. 网际协议（IP）</span></span></a></li><li><a class="level is-mobile" href="#"><span class="level-left"><span class="level-item">7</span><span class="level-item">5. 网际控制消息协议（ICMP）</span></span></a></li><li><a class="level is-mobile" href="#"><span class="level-left"><span class="level-item">8</span><span class="level-item">6. IP 地址欺骗（IP Spoofing）</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#"><span class="level-left"><span class="level-item">8.1</span><span class="level-item">6.1 IP 地址欺骗原理</span></span></a></li><li><a class="level is-mobile" href="#"><span class="level-left"><span class="level-item">8.2</span><span class="level-item">6.2 IP 地址欺骗应对措施</span></span></a></li></ul></li><li><a class="level is-mobile" href="#"><span class="level-left"><span class="level-item">9</span><span class="level-item">7. 数据包嗅探（Packet Sniffing）</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#"><span class="level-left"><span class="level-item">9.1</span><span class="level-item">7.1 Wireshark</span></span></a></li><li><a class="level is-mobile" href="#"><span class="level-left"><span class="level-item">9.2</span><span class="level-item">7.2 防止数据包嗅探</span></span></a></li></ul></li><li><a class="level is-mobile" href="#"><span class="level-left"><span class="level-item">10</span><span class="level-item">8. 传输层</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#"><span class="level-left"><span class="level-item">10.1</span><span class="level-item">8.1 TCP 协议</span></span></a></li><li><a class="level is-mobile" href="#"><span class="level-left"><span class="level-item">10.2</span><span class="level-item">8.2 UDP 协议</span></span></a></li></ul></li><li><a class="level is-mobile" href="#"><span class="level-left"><span class="level-item">11</span><span class="level-item">9. TCP会话劫持</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#"><span class="level-left"><span class="level-item">11.1</span><span class="level-item">9.1 盲注入</span></span></a></li><li><a class="level is-mobile" href="#"><span class="level-left"><span class="level-item">11.2</span><span class="level-item">9.2 ACK 风暴</span></span></a></li><li><a class="level is-mobile" href="#"><span class="level-left"><span class="level-item">11.3</span><span class="level-item">9.3 完全会话劫持</span></span></a></li><li><a class="level is-mobile" href="#"><span class="level-left"><span class="level-item">11.4</span><span class="level-item">9.4 针对会话劫持的安全措施</span></span></a></li></ul></li><li><a class="level is-mobile" href="#"><span class="level-left"><span class="level-item">12</span><span class="level-item">10. 拒绝服务攻击</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#"><span class="level-left"><span class="level-item">12.1</span><span class="level-item">10.1 ICMP 攻击</span></span></a></li><li><a class="level is-mobile" href="#"><span class="level-left"><span class="level-item">12.2</span><span class="level-item">10.2 SYN 洪水攻击</span></span></a></li><li><a class="level is-mobile" href="#"><span class="level-left"><span class="level-item">12.3</span><span class="level-item">10.3 防范 SYN 洪水攻击</span></span></a></li></ul></li><li><a class="level is-mobile" href="#"><span class="level-left"><span class="level-item">13</span><span class="level-item">11. IP 地址回溯</span></span></a></li></ul></div></div><style>#toc .menu-list > li > a.is-active + .menu-list { display: block; }#toc .menu-list > li > a + .menu-list { display: none; }</style><script src="/js/toc.js" defer></script></div><div class="card widget" data-type="links"><div class="card-content"><div class="menu"><h3 class="menu-label">链接</h3><ul class="menu-list"><li><a class="level is-mobile" href="https://blog.woshiluo.com/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">woshiluo</span></span><span class="level-right"><span class="level-item tag">blog.woshiluo.com</span></span></a></li><li><a class="level is-mobile" href="https://studyingfather.com/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Studying Father</span></span><span class="level-right"><span class="level-item tag">studyingfather.com</span></span></a></li><li><a class="level is-mobile" href="https://www.cnblogs.com/thornblog/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">T_horn</span></span><span class="level-right"><span class="level-item tag">www.cnblogs.com</span></span></a></li><li><a class="level is-mobile" href="https://www.cnblogs.com/opethrax/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">opethrax</span></span><span class="level-right"><span class="level-item tag">www.cnblogs.com</span></span></a></li><li><a class="level is-mobile" href="https://www.cnblogs.com/BeyondLimits/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">old Zylll</span></span><span class="level-right"><span class="level-item tag">www.cnblogs.com</span></span></a></li></ul></div></div></div><div class="card widget" data-type="categories"><div class="card-content"><div class="menu"><h3 class="menu-label">分类</h3><ul class="menu-list"><li><a class="level is-mobile" href="/categories/%E4%B8%93%E4%B8%9A%E7%9F%A5%E8%AF%86/"><span class="level-start"><span class="level-item">专业知识</span></span><span class="level-end"><span class="level-item tag">35</span></span></a></li><li><a class="level is-mobile" href="/categories/%E7%AE%97%E6%B3%95%E7%AB%9E%E8%B5%9B/"><span class="level-start"><span class="level-item">算法竞赛</span></span><span class="level-end"><span class="level-item tag">12</span></span></a></li><li><a class="level is-mobile" href="/categories/%E7%BC%96%E7%A8%8B%E5%AD%A6%E4%B9%A0/"><span class="level-start"><span class="level-item">编程学习</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%AE%89%E5%85%A8/"><span class="level-start"><span class="level-item">计算机安全</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"><span class="level-start"><span class="level-item">读书笔记</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/%E9%9A%8F%E7%AC%94/"><span class="level-start"><span class="level-item">随笔</span></span><span class="level-end"><span class="level-item tag">6</span></span></a></li></ul></div></div></div><div class="card widget" data-type="archives"><div class="card-content"><div class="menu"><h3 class="menu-label">归档</h3><ul class="menu-list"><li><a class="level is-mobile" href="/archives/2024/"><span class="level-start"><span class="level-item">2024</span></span><span class="level-end"><span class="level-item tag">6</span></span></a></li><li><a class="level is-mobile" href="/archives/2023/"><span class="level-start"><span class="level-item">2023</span></span><span class="level-end"><span class="level-item tag">44</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/"><span class="level-start"><span class="level-item">2022</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/"><span class="level-start"><span class="level-item">2021</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/"><span class="level-start"><span class="level-item">2020</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/archives/2019/"><span class="level-start"><span class="level-item">2019</span></span><span class="level-end"><span class="level-item tag">5</span></span></a></li></ul></div></div></div><div class="card widget" data-type="tags"><div class="card-content"><div class="menu"><h3 class="menu-label">标签</h3><div class="field is-grouped is-grouped-multiline"><div class="control"><a class="tags has-addons" href="/tags/C/"><span class="tag">C++</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/CSP-%E8%AE%A4%E8%AF%81/"><span class="tag">CSP 认证</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/JavaScript/"><span class="tag">JavaScript</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/SQL/"><span class="tag">SQL</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E4%BA%8C%E5%88%86/"><span class="tag">二分</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%9E%9A%E4%B8%BE/"><span class="tag">二进制枚举</span><span class="tag">4</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E4%BD%8D%E8%BF%90%E7%AE%97/"><span class="tag">位运算</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%85%B3%E7%B3%BB%E6%95%B0%E6%8D%AE%E5%BA%93/"><span class="tag">关系数据库</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%89%8D%E7%AB%AF/"><span class="tag">前端</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%8A%A0%E7%BC%AA%E6%89%8B%E8%AE%B0/"><span class="tag">加缪手记</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/"><span class="tag">动态规划</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%93%88%E5%B8%8C/"><span class="tag">哈希</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%9B%BE%E8%AE%BA/"><span class="tag">图论</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%AF%86%E7%A0%81%E5%AD%A6/"><span class="tag">密码学</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%B7%AE%E5%88%86/"><span class="tag">差分</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%B9%B6%E6%9F%A5%E9%9B%86/"><span class="tag">并查集</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%BE%AE%E6%9C%BA%E5%8E%9F%E7%90%86/"><span class="tag">微机原理</span><span class="tag">7</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%80%9D%E7%BB%B4/"><span class="tag">思维</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%8A%BD%E8%B1%A1%E4%BB%A3%E6%95%B0/"><span class="tag">抽象代数</span><span class="tag">12</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%8E%92%E5%BA%8F/"><span class="tag">排序</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%90%9C%E7%B4%A2/"><span class="tag">搜索</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%91%98%E6%8A%84/"><span class="tag">摘抄</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"><span class="tag">操作系统</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%95%B0%E5%AD%A6/"><span class="tag">数学</span><span class="tag">8</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/"><span class="tag">数据库</span><span class="tag">5</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%9E%84%E9%80%A0/"><span class="tag">构造</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%A8%A1%E6%8B%9F/"><span class="tag">模拟</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80/"><span class="tag">汇编语言</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E7%8A%B6%E6%80%81%E5%8E%8B%E7%BC%A9/"><span class="tag">状态压缩</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E7%94%9F%E7%89%A9%E5%AD%A6/"><span class="tag">生物学</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E7%AE%97%E6%B3%95%E5%AE%9E%E9%AA%8C/"><span class="tag">算法实验</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/"><span class="tag">网络安全</span><span class="tag">3</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E7%BE%A4%E8%AE%BA/"><span class="tag">群论</span><span class="tag">6</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%AE%89%E5%85%A8/"><span class="tag">计算机安全</span><span class="tag">8</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%97%85%E6%AF%92/"><span class="tag">计算机病毒</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E8%AE%A1%E7%BB%84/"><span class="tag">计组</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E8%B4%AA%E5%BF%83/"><span class="tag">贪心</span><span class="tag">4</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E8%BD%AF%E4%BB%B6%E5%AE%89%E5%85%A8/"><span class="tag">软件安全</span><span class="tag">1</span></a></div></div></div></div></div></div><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/">Zylll&#039;s Blog</a><p class="is-size-7"><span>&copy; 2024 Zylll</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p><p class="is-size-7">你眼睛里的东西是你脑海里的回忆。</p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("zh-cn");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="回到顶端" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "此网站使用Cookie来改善您的体验。",
+          dismiss: "知道了！",
+          allow: "允许使用Cookie",
+          deny: "拒绝",
+          link: "了解更多",
+          policy: "Cookie政策",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/contrib/auto-render.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/contrib/mhchem.min.js" defer></script><script>window.addEventListener("load", function() {
+            document.querySelectorAll('[role="article"] > .content').forEach(function(element) {
+                renderMathInElement(element);
+            });
+        });</script><script type="text/x-mathjax-config">MathJax.Hub.Config({
+            'HTML-CSS': {
+                matchFontHeight: false
+            },
+            SVG: {
+                matchFontHeight: false
+            },
+            CommonHTML: {
+                matchFontHeight: false
+            },
+            tex2jax: {
+                inlineMath: [
+                    ['$','$'],
+                    ['\\(','\\)']
+                ]
+            }
+        });</script><script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.9/unpacked/MathJax.js?config=TeX-MML-AM_CHTML" defer></script><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="想要查找什么..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"想要查找什么...","untitled":"(无标题)","posts":"文章","pages":"页面","categories":"分类","tags":"标签"});
+        });</script></body></html>
